@@ -1,0 +1,18 @@
+Excellent consistent results
+LR = 0.001
+DOR = 0.4, 0.5
+======================================
+"Best Accuracy: 0.9"
+[1] "Best Number of Nodes: 250"
+[1] "Best Dropout: 0.6"
+[1] "Best Learning Rate: 0.0001"
+-------------------------------------
+"Best Accuracy: 0.9025"
+[1] "Best Number of Nodes: 75"
+[1] "Best Dropout: 0.2"
+[1] "Best Learning Rate: 0.001"
+-------------------------------------
+"Best Accuracy: 0.9025".  VERY CONSISTENT
+[1] "Best Number of Nodes: 100"
+[1] "Best Dropout: 0.4"
+[1] "Best Learning Rate: 0.001"
