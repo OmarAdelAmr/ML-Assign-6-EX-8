@@ -25,7 +25,7 @@ get_alphabet <- function()
 }
 
 
-
+# One-hot Encoding
 encode_sequence <- function(input_sequence)
 {
   data_sample_split <- unlist(strsplit(input_sequence, ""))
@@ -55,6 +55,7 @@ calculate_encoded_matrix <- function(dataset)
   return(result)
 }
 
+# Predict test data via 1-hidden-layer neural network
 predict_test_sample_1 <- function(test_data)
 {
   prediction_results <- vector()
@@ -69,6 +70,8 @@ predict_test_sample_1 <- function(test_data)
   print("Test sample prediction done!")
 }
 
+
+# Predict test data via 2-hidden-layer neural network
 predict_test_sample_2 <- function(test_data)
 {
   prediction_results <- vector()
@@ -83,7 +86,7 @@ predict_test_sample_2 <- function(test_data)
   print("Test sample prediction done!")
 }
 
-
+# Search for best parameters for NN with 1 hidden layer and train a model with best parameters.
 search_for_best_params_1_layer <- function()
 {
   best_accuracy <- 0
@@ -153,6 +156,7 @@ search_for_best_params_1_layer <- function()
                              learning_rate=best_learning_rate, dropout_rate=best_dropout_rate)
 }
 
+# Helper function
 train_1_hidden_layer_model <- function(hidden_nodes_number, learning_rate, dropout_rate)
 {
   model <<- keras_model_sequential()
@@ -180,7 +184,7 @@ train_1_hidden_layer_model <- function(hidden_nodes_number, learning_rate, dropo
   print(history)
 }
 
-
+# Search for best parameters for NN with 2 hidden layers and train a model with best parameters.
 search_for_best_params_2_layers <- function()
 {
   best_accuracy <- 0
@@ -262,6 +266,7 @@ search_for_best_params_2_layers <- function()
                              learning_rate=best_learning_rate, dropout_rate=best_dropout_rate)
 }
 
+# Helper function
 train_2_hidden_layer_model <- function(hidden_nodes_number_1, hidden_nodes_number_2,
                            learning_rate, dropout_rate)
 {
@@ -305,32 +310,32 @@ encoding_matrix <- calculate_encoded_matrix(sequence_training_data)
 
 start_time <- Sys.time()
 
+# UNCOMMENT ONE OF THE FOLLOWING BLOCKS
 
 ###################################################################################################
 #  Search for best parameters for NN with 1 hidden layer and train a model with these parameters  #
 ###################################################################################################
+# search_for_best_params_1_layer()
+# predict_test_sample_1(sequence_testing_set)
 
-search_for_best_params_1_layer()
 
-
-
+####################################################################################################
+#  Search for best parameters for NN with 2 hidden layers and train a model with these parameters  #
+####################################################################################################
+# search_for_best_params_2_layers()
+# predict_test_sample_2(sequence_testing_set)
 
 #####################################################
 #  Train 1-hidden-layer Model With Best Parameters  #
 #####################################################
+train_1_hidden_layer_model(hidden_nodes_number=100, learning_rate=0.001, dropout_rate=0.4) # 90%
+predict_test_sample_1(sequence_testing_set)
 
-#train_1_hidden_layer_model(hidden_nodes_number=100, learning_rate=0.001, dropout_rate=0.4) # 90%
-# predict_test_sample_1(sequence_testing_set)
-
-# TODO:
-# search_for_best_params_2_layers()
-# train_2_hidden_layer_model(hidden_nodes_number_1 = 200, hidden_nodes_number_2 = 100, learning_rate = 0.001, dropout_rate = 0.3) # 91%
+#####################################################
+#  Train 2-hidden-layer Model With Best Parameters  #
+#####################################################
+# train_2_hidden_layer_model(hidden_nodes_number_1 = 200, hidden_nodes_number_2 = 100, learning_rate = 0.001, dropout_rate = 0.3) # 90.5%
 # predict_test_sample_2(sequence_testing_set)
-
-
-##########################
-#  Predict Test Dataset  #
-##########################
 
 
 
